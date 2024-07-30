@@ -7,6 +7,7 @@
     <form name="frmReg" method="POST" th:action="@{/board/update}" autocomplete="off"
           th:object="${requestBoard}">
         <input type="hidden" name="seq" th:field="*{seq}">
+<!--        <th:block th:replace="~{front/board/_form::form}"></th:block>-->
         <dl>
             <dt th:text="#{작성자}"></dt>
             <dd>

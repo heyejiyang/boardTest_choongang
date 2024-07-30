@@ -3,6 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{board/layouts/main}">
 <main layout:fragment="content">
+<!--    <th:block th:replace="~{front/board/_form::form}"></th:block>-->
     <h1 th:text="#{게시글등록}"></h1>
     <form name="frmReg" method="POST" th:action="@{/board/register}" autocomplete="off"
           th:object="${requestBoard}">
