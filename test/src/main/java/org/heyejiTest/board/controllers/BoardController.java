@@ -45,22 +45,22 @@ public class BoardController {
     public String view(@PathVariable("seq") Long seq, Model model){
         BoardData boardData = boardService.find(seq);
         model.addAttribute("boardData", boardData);
-        model.addAttribute("mode", "view");
-        return "/board/update_view";
+        return "/board/view";
     }
 
     @GetMapping("/update/{seq}")
     public String update(@PathVariable("seq") Long seq,Model model){
 
-        model.addAttribute("boardData",boardService.find(seq));
-        model.addAttribute("mode", "update");
-        return "board/update_view";
+        RequestBoard data = boardService.getForm(seq);
+
+        model.addAttribute("requestBoard", data);
+        return "board/update";
     }
 
     @PostMapping("/update")
     public String updatePs(@Valid RequestBoard form,Errors errors){
         if (errors.hasErrors()) {
-            return "board/update_view";
+            return "board/update";
         }
         BoardData boardData = new ModelMapper().map(form, BoardData.class);
         boardService.save(form);

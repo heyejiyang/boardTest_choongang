@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{board/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{게시글보기}"></h1>
+    <form name="frmView" method="POST" autocomplete="off"
+        th:object="${boardData}" th:action="@{/board/update}">
+        <input type="hidden" name="seq" th:field="*{seq}">
+        <dl>
+            <dt th:text="#{작성자}"></dt>
+            <dd>
+                <input type="text" name="writer" th:field="*{writer}" readonly/>
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{제목}"></dt>
+            <dd>
+                <input type="text" name="subject" th:field="*{subject}" readonly/>
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{내용}"></dt>
+            <dd>
+                <textarea name="content" th:field="*{content}" readonly></textarea>
+            </dd>
+        </dl>
+        <div class="buttons">
+
+            <a th:href="@{/board/list}" class="button" th:text="#{목록이동}"></a>
+
+            <a th:href="@{/board/update/{seq}(seq=*{seq})}" class="button" th:text="#{수정하기}"></a>
+
+            <a th:href="@{/board/delete/{seq}(seq=*{seq})}" class="button" th:text="#{삭제하기}" onclick="return confirm('삭제하시겠습니까?');"></a>
+        </div>
+
+    </form>
+</main>
+</html>

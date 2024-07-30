@@ -3,10 +3,10 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{board/layouts/main}">
 <main layout:fragment="content">
-    <h1 th:text="#{게시글등록}"></h1>
-    <form name="frmReg" method="POST" th:action="@{/board/register}" autocomplete="off"
+    <h1 th:text="#{게시글수정}"></h1>
+    <form name="frmReg" method="POST" th:action="@{/board/update}" autocomplete="off"
           th:object="${requestBoard}">
-
+        <input type="hidden" name="seq" th:field="*{seq}">
         <dl>
             <dt th:text="#{작성자}"></dt>
             <dd>
@@ -34,8 +34,12 @@
             </dd>
         </dl>
         <div class="buttons">
+
             <button type="reset" th:text="#{다시입력}"></button>
-            <button type="submit" th:text="#{작성완료}"></button>
+
+            <button type="submit" th:text="#{수정완료}"></button>
+
+            <a th:href="@{/board/delete/{seq}(seq=*{seq})}" class="button" th:text="#{삭제하기}" onclick="return confirm('삭제하시겠습니까?');"></a>
         </div>
     </form>
 </main>

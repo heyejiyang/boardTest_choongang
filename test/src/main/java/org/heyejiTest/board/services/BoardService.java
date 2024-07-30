@@ -37,8 +37,6 @@ public class BoardService {
         if (boardData == null) boardData = new ModelMapper().map(form, BoardData.class); // 추가
         //BoardData boardData = new ModelMapper().map(form, BoardData.class);
 
-
-
         boardRepository.saveAndFlush(boardData);
     }
 
@@ -48,6 +46,13 @@ public class BoardService {
 
     public void delete(BoardData boardData){
         boardRepository.delete(boardData);
+    }
+
+    public RequestBoard getForm(Long seq){
+        BoardData data = find(seq);
+        RequestBoard form = new ModelMapper().map(data, RequestBoard.class);
+
+        return form;
     }
 
 }
