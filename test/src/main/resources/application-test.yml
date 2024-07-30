@@ -1,0 +1,34 @@
+# 공통 설정
+
+server:
+  port: 3000
+
+spring:
+  # 데이터베이스 설정
+  datasource:
+    driver-class-name: org.h2.Driver
+    # 카멜케이스 형식으로도 입력 가능 driverClassName
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+
+  # JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true #sql 보이게
+        format_sql: true # 줄개행
+        use_sql_comments: true #설명
+    hibernate:
+      ddl-auto: create # 배포할땐 바꾸기
+
+  # 라이브 리로드 설정
+  devtools:
+    livereload:
+      enabled: true
+
+# 로거 설정
+logging:
+  level:
+    org.hibernate.type: trace
+    org.hibernate.orm.jdbc.bind: trace
