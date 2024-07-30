@@ -1,0 +1,10 @@
+# 테스트용 설정
+
+spring:
+  # 데이터베이스 설정
+  datasource:
+    driver-class-name: org.h2.Driver
+    # 카멜케이스 형식으로도 입력 가능 driverClassName
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
