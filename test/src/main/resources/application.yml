@@ -20,7 +20,7 @@ spring:
         format_sql: true # 줄개행
         use_sql_comments: true #설명
     hibernate:
-      ddl-auto: create # 배포할땐 바꾸기
+      ddl-auto: update # 배포할땐 바꾸기
 
   # 라이브 리로드 설정
   devtools:

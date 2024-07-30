@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{board/layouts/main}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 목록</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/board/css/style.css}">
+</head>
+<body>
+<main layout:fragment="content">
+    <h1 th:text="#{게시물목록}"></h1>
+    <div class="layout">
+        <table>
+            <thead>
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>날짜</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${boardData}">
+                <td>
+                    <a th:href="@{/board/view/{seq}(seq=${board.seq})}" th:text="${board.seq}"></a>
+                </td>
+                <td>
+                    <a th:href="@{/board/view/{seq}(seq=${board.seq})}" th:text="${board.subject}"></a>
+                </td>
+                <td th:text="${board.writer}"></td>
+                <td th:text="${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button onclick="location.href='/board/register'" th:text="#{글쓰기}"></button>
+        </div>
+    </div>
+</main>
+</body>
+</html>

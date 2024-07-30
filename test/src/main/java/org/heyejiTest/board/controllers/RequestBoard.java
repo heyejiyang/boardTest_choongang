@@ -5,6 +5,9 @@ import lombok.Data;
 
 @Data
 public class RequestBoard { //커맨드 - 검증 용도
+
+    private Long seq;
+
     @NotBlank //필수항목 검증
     private String subject;
     @NotBlank

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{board/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="${mode} == 'view' ? '게시글 보기' : '게시글 수정'"></h1>
+    <form name="frmBoard" method="POST" autocomplete="off"
+        th:object="${boardData}" th:action="@{/board/update}">
+        <input type="hidden" name="seq" th:field="*{seq}">
+        <dl>
+            <dt th:text="#{작성자}"></dt>
+            <dd>
+                <input type="text" name="writer" th:field="*{writer}" th:readonly="${mode} == 'view'"/>
+                <div class="error" th:each="err : ${#fields.errors('writer')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{제목}"></dt>
+            <dd>
+                <input type="text" name="subject" th:field="*{subject}" th:readonly="${mode} == 'view'"/>
+                <div class="error" th:each="err : ${#fields.errors('subject')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <dl>
+            <dt th:text="#{내용}"></dt>
+            <dd>
+                <textarea name="content" th:field="*{content}" th:readonly="${mode} == 'view'"></textarea>
+                <div class="error" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
+            </dd>
+        </dl>
+        <div class="buttons">
+            <!-- view 모드일 때 목록이동 버튼 -->
+            <button type="button" th:if="${mode} == 'view'" onclick="location.href='/board/list'" th:text="#{목록이동}"></button>
+
+            <!-- view 모드일 때 수정하기 버튼 -->
+            <button type="button" th:if="${mode} == 'view'"
+                    th:onclick="'location.href=\'/board/update/' + ${boardData.seq} + '\''"
+                    th:text="#{수정하기}"></button>
+
+            <!-- update 모드일 때 다시입력 버튼 -->
+            <button type="reset" th:if="${mode} == 'update'" th:text="#{다시입력}"></button>
+
+            <!-- update 모드일 때 수정완료 버튼 -->
+            <button type="submit" th:if="${mode} == 'update'" th:text="#{수정완료}"></button>
+
+            <button th:text="#{삭제하기}" onclick="alert('삭제하시겠습니까?')" ></button>
+        </div>
+
+    </form>
+</main>
+</html>
