@@ -46,7 +46,7 @@ public class BoardController {
         BoardData boardData = boardService.find(seq);
         model.addAttribute("boardData", boardData);
         model.addAttribute("mode", "view");
-        return "update_view";
+        return "/board/update_view";
     }
 
     @GetMapping("/update/{seq}")
@@ -54,13 +54,13 @@ public class BoardController {
 
         model.addAttribute("boardData",boardService.find(seq));
         model.addAttribute("mode", "update");
-        return "update_view";
+        return "board/update_view";
     }
 
     @PostMapping("/update")
     public String updatePs(@Valid RequestBoard form,Errors errors){
         if (errors.hasErrors()) {
-            return "update_view";
+            return "board/update_view";
         }
         BoardData boardData = new ModelMapper().map(form, BoardData.class);
         boardService.save(form);
@@ -68,7 +68,7 @@ public class BoardController {
         return "redirect:/board/view/" + boardData.getSeq();
     }
 
-    @PostMapping("/delete/{seq}")
+    @GetMapping("/delete/{seq}")
     public String delete(@PathVariable("seq") Long seq){
         BoardData boardData = boardService.find(seq);
         if (boardData != null) {

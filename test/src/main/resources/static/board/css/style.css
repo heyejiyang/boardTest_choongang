@@ -36,10 +36,23 @@ th {
 }
 
 /* 버튼 스타일 */
-button {
+button, a.button {
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    font-size: 13px;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+    color: #000000;
+    background-color: #f4f4f4;
 }
+
+button:focus, a.button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+a.button {
+    display: inline-block; /* Allow width and height adjustments */
+}
+
 
