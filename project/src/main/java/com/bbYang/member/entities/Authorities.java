@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
+@IdClass(AuthoritiesId.class)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Authorities { //Many에 해당

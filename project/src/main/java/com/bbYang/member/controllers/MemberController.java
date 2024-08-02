@@ -1,5 +1,6 @@
 package com.bbYang.member.controllers;
 
+import com.bbYang.member.services.MemberSaveService;
 import com.bbYang.member.validators.JoinValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
     private final JoinValidator joinValidator;
+    private final MemberSaveService memberSaveService;
 
     @GetMapping("/join")
     public String join(@ModelAttribute RequestJoin form)
@@ -30,6 +32,8 @@ public class MemberController {
         if(errors.hasErrors()){
             return "front/member/join";
         }
+
+        memberSaveService.save(form);
 
         return "redirect:/member/login";
     }
