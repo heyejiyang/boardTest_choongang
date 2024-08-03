@@ -4,11 +4,13 @@ import com.bbYang.member.services.MemberSaveService;
 import com.bbYang.member.validators.JoinValidator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/member")
@@ -58,5 +60,36 @@ public class MemberController {
 
         return "front/member/login";
     }
+/*
+    @ResponseBody
+    @GetMapping("/test")
+    public void test(Principal principal){
+        //로그인한 회원 정보의 아이디 알 수 있다.
+        log.info("로그인 아이디:{}",principal.getName());
+    }
+
+    @ResponseBody
+    @GetMapping("/test2")
+    public void test2(@AuthenticationPrincipal MemberInfo memberInfo){
+        log.info("로그인 회원: {}", memberInfo.toString());
+    }
+
+    @ResponseBody
+    @GetMapping("/test3")
+    public void test3(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); //로그인 상태에 대한 객체 가져올 수 있다.
+
+        log.info("로그인 상태:{}", authentication.isAuthenticated()); //true,false, 인증권한이 있으면 true, 없으면 false임 로그인 상태 아님
+
+        if(authentication.isAuthenticated() && authentication.getPrincipal() instanceof MemberInfo){ //로그인 상태 - UserDetails 구현체
+            MemberInfo memberInfo = (MemberInfo) authentication.getPrincipal();
+            log.info("로그인 회원:{}",memberInfo.toString()); //로그인한 회원 정보
+        } else { //미로그인 상태 - String 문자열 / anonymousUser (getPrincipal())
+            log.info("getPrincipal(): {}",authentication.getPrincipal());
+        }
+
+    }
+
+*/
 
 }
