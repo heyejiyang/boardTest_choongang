@@ -1,14 +1,10 @@
 package com.bbYang.member.entities;
 
 import com.bbYang.global.entities.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -27,5 +23,9 @@ public class Member extends BaseEntity {
     private String userName;
     @Column(length = 15, nullable = false)
     private String mobile;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "member")
+    private List<Authorities> authorities;
 
 }
