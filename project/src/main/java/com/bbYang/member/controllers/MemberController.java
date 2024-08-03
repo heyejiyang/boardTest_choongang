@@ -108,17 +108,17 @@ public class MemberController {
     @ResponseBody
     @GetMapping("/test5")
     public void test5(){
-        Board board = Board.builder()
-                .bId("freetalk")
-                .bName("자유게시판")
-                .build();
-
-        boardRepository.saveAndFlush(board);
+//        Board board = Board.builder()
+//                .bId("review")
+//                .bName("후기")
+//                .build();
+//
+//        boardRepository.saveAndFlush(board);
 
         //영속성 상태 안에 있는 엔티티 수정 -> update
-//        Board board = boardRepository.findById("freetalk").orElse(null);
-//        board.setBName("수정완료_자유게시판");
-//        boardRepository.saveAndFlush(board);
+        Board board = boardRepository.findById("review").orElse(null);
+        board.setBName("수정22_리뷰");
+        boardRepository.saveAndFlush(board);
     }
 
 }
