@@ -20,9 +20,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
         /*로그인 로그아웃 S*/
         http.formLogin(f -> {
-            f.loginPage("/member/login") //로그인 데이터를 제출 할 경로
-                    .usernameParameter("email") //이메일 항목으로 username을 설정한다는걸 알려주기
-                    .passwordParameter("password") //개발자마다 다르게 구현 할 부분 알려줘야함
+            f.loginPage("/member/login") //로그인 데이터를 제출 할 경로(로그인 페이지 url)
+                    .usernameParameter("email") //로그인시 이메일 필드 이름
+                    .passwordParameter("password") //로그인시 비밀번호 필드 이름, 개발자마다 필드 이름이 다를 수 있어서 알려줘야함
                     .successHandler(new LoginSuccessHandler())//로그인 성공시 유입
                     .failureHandler(new LoginFailureHandler()); //실패시 유입
 
@@ -32,7 +32,7 @@ public class SecurityConfig {
             f.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) //로그아웃 처리 주소
                     .logoutSuccessUrl("/member/login");//로그아웃 성공시 이동할 주소
             //로그 기록하거나 후속 처리가 필요할 경우 핸들러 정의하면 됨
-        });
+        }); //로그아웃시 세션 무효화 시킴
         /*로그인 로그아웃 E*/
 
         return http.build();
