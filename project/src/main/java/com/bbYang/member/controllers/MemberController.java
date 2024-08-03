@@ -1,5 +1,8 @@
 package com.bbYang.member.controllers;
 
+import com.bbYang.MemberUtil;
+import com.bbYang.board.entities.Board;
+import com.bbYang.board.repositories.BoardRepository;
 import com.bbYang.member.services.MemberSaveService;
 import com.bbYang.member.validators.JoinValidator;
 import jakarta.validation.Valid;
@@ -19,6 +22,8 @@ public class MemberController {
 
     private final JoinValidator joinValidator;
     private final MemberSaveService memberSaveService;
+    private final MemberUtil memberUtil;
+    private final BoardRepository boardRepository;
 
     @ModelAttribute //컨트롤러의 모든 요청에서 호출됨, 컨트롤러의 요청 처리 메서드가 호출되기 전에 실행
     private RequestLogin requestLogin(){
@@ -91,5 +96,29 @@ public class MemberController {
     }
 
 */
+
+    @ResponseBody
+    @GetMapping("/test4")
+    public void test4(){
+        log.info("로그인 여부: {}",memberUtil.isLogin());
+        log.info("로그인 회원: {}",memberUtil.getMember());
+        log.info("관리자 권환: {}",memberUtil.isAdmin());
+    }
+
+    @ResponseBody
+    @GetMapping("/test5")
+    public void test5(){
+        Board board = Board.builder()
+                .bId("freetalk")
+                .bName("자유게시판")
+                .build();
+
+        boardRepository.saveAndFlush(board);
+
+        //영속성 상태 안에 있는 엔티티 수정 -> update
+//        Board board = boardRepository.findById("freetalk").orElse(null);
+//        board.setBName("수정완료_자유게시판");
+//        boardRepository.saveAndFlush(board);
+    }
 
 }
