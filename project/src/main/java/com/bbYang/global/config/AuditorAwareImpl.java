@@ -27,6 +27,6 @@ public class AuditorAwareImpl implements AuditorAware<String> { //데이터베�
         String email = memberUtil.isLogin() ? memberUtil.getMember().getEmail() : null;
         // 미로그인 상태일때는 null 대입
 
-        return Optional.ofNullable(email);
+        return Optional.ofNullable(email); //이메일이 null일 수도있고 아닐수도 있는 경우 처리
     }
 }

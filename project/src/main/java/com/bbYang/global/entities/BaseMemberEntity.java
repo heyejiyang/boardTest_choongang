@@ -17,7 +17,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass //다른 엔티티들이 이 클래스를 상속받아 공통 속성을 사용할 수 있도록 함
 @Getter
 @Setter
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) //spring data jpa는 리스너를 통해 엔티티 생성, 수정 시점에 @CreatedBy와 @LastModifiedBy 필드를 자동으로 채움
 public abstract class BaseMemberEntity extends BaseEntity{
     @CreatedBy //엔티티가 처음 생성될 때 사용자의 이메일 등을 기록
     @Column(length = 65, updatable = false) //db에 업데이트 될 수 없도록 설정, 즉 엔티티를 업데이트 할 때 이 컬럼의 값이 변경되지 않음
