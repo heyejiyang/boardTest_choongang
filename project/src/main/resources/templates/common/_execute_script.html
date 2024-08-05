@@ -1,0 +1,5 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<script th:if="${script != null}" th:utext="${script}"></script>
+</html>
+<!--HTML태그는 해석되지 않고 문자 그대로 출력된다 -> utext사용해야함-->

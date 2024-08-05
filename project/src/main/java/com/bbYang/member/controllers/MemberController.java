@@ -34,6 +34,20 @@ public class MemberController {
     @GetMapping("/join")
     public String join(@ModelAttribute RequestJoin form)
     {
+        //임시로 에러 던지기
+//        boolean result = false;
+//        if(!result){
+//            throw  new CommonException("테스트 예외", HttpStatus.BAD_REQUEST);
+//        }
+
+//        if(!result){
+//            throw  new AlertException("Alert 테스트 예외", HttpStatus.BAD_REQUEST);
+//        }
+
+//        if(!result){
+//            throw  new AlertBackException("AlertBack 테스트 예외", HttpStatus.BAD_REQUEST);
+//        }
+
         return "front/member/join";
     }
 
