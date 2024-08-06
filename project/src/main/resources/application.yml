@@ -1,7 +1,7 @@
 #공통설정
 
 server:
-  port: 4000
+  port: 5000
 
 spring:
   datasource:
