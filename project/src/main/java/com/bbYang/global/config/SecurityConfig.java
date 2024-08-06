@@ -6,7 +6,9 @@ import com.bbYang.member.services.MemberAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,6 +19,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * - 인증 페이지 무력화 시키기
  */
 @Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http)throws Exception {
@@ -54,6 +58,9 @@ public class SecurityConfig {
                     });
         });
         /* 인가(접근 통제) 설정 E*/
+
+        //iframe 자원 출처를 같은 서버 자원으로 한정
+        http.headers(a -> a.frameOptions(f -> f.sameOrigin()));
 
         return http.build();
     }
