@@ -34,8 +34,9 @@ public class FileInfo extends BaseMemberEntity {
 
     private boolean done; // 그룹 작업 완료 여부
 
-    @Transient //엔티티 내부에서만 사용할 목적으로 정의한 필드
+    @Transient //@Entity 어노테이션이 정의된, 엔티티 클래스에서 사용
+    //JPA에서 엔티티의 필드값들을 영속성 객체로 관리하는데, 관리 대상에서 해당 필드나 메서드를 제외하기 위함
     private String fileUrl; //파일 접근 URL
-    @Transient
+    @Transient //영속성 객체로 관리 될 필요 X
     private String filePath; //파일 업로드 경로
 }

@@ -49,7 +49,7 @@ public class FileInfoService {
     /**
      * 파일 목록 조회
      * @param gid - 그룹 아이디
-     * @param location
+     * @param location - 파일 위치
      * @param status - ALL: 완료+미완료, DONE: 완료, UNDONE: 미완료
      * @return
      */
@@ -66,7 +66,7 @@ public class FileInfoService {
 
         if(status != FileStatus.ALL){ //ALL이 아닐때
             andBuilder.and(fileInfo.done.eq(status == FileStatus.DONE));
-            //DONE이면 true, 아니면 false
+            //DONE이면 완료된 파일만 조회, 아니면 미완료 파일만 조회
         }
 
         List<FileInfo> items = (List<FileInfo>) infoRepository.findAll(andBuilder, Sort.by(asc("createdAt")));//등록일자 기준 오름차순 정렬
