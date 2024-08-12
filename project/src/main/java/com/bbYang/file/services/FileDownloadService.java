@@ -17,6 +17,10 @@ public class FileDownloadService {
     private final FileInfoService infoService;
     private final HttpServletResponse response;
 
+    /**
+     * 파일 다운로드 메서드
+     * @param seq: 파일 등록 번호
+     */
     public void download(Long seq){
         //파일 먼저 불러오고 응답헤더로 파일 다운로드 시키기
         FileInfo data = infoService.get(seq); //파일 1개 조회
@@ -46,7 +50,8 @@ public class FileDownloadService {
             response.setContentLengthLong(file.length()); //파일 용량
 
             OutputStream out = response.getOutputStream();
-            //바이트 단위 출력
+
+            //파일을 바이트 단위로 읽어서 클라이언트에 전송
             out.write(bis.readAllBytes());
 
         }catch (IOException e){

@@ -77,10 +77,12 @@ public class FileInfoService {
         return items;
     }
 
+    //파일 위치와 상태를 기본값으로 설정하여 목록 조회
     public List<FileInfo> getList(String gid, String location){
         return getList(gid, location, FileStatus.DONE); //DONE으로 고정
     }
 
+    // 그룹 아이디만으로 목록 조회
     public List<FileInfo> getList(String gid){ //gid만 가지고 조회시
         return getList(gid, null, FileStatus.DONE); //DONE으로 고정
     }
@@ -108,10 +110,12 @@ public class FileInfoService {
         return properties.getPath()+ "/" + getFolder(item.getSeq()) + "/" + getFileName(item);
     }
 
+    //파일 저장 디렉토리
     public String getFolder(long seq){
         return String.valueOf(seq % 10L);
     }
 
+    //파일이름 생성
     public String getFileName(FileInfo item){
         String fileName = item.getSeq() + Objects.requireNonNullElse(item.getExtension(),"");
         return fileName;
